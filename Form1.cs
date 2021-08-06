@@ -1,43 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace shape_drawer
 {
+    // patterns:
+
+    // bridge pattern for the draw api
+    // https://www.tutorialspoint.com/design_pattern/bridge_pattern.htm
+
+    // decorator for shape color
+    // https://www.tutorialspoint.com/design_pattern/decorator_pattern.htm
+
     public partial class Form1 : Form
     {
-        // patterns
-        // factory for shape creation
-        // https://www.tutorialspoint.com/design_pattern/factory_pattern.htm
+        int x, y;
 
-        // bridge pattern for the draw api
-        // https://www.tutorialspoint.com/design_pattern/bridge_pattern.htm
-
-        // decorator for shape color
-        // https://www.tutorialspoint.com/design_pattern/decorator_pattern.htm
-
-        // store multiple shapes
-
-        // clarify the requirements with a mock UI
-
-        int x, y, height, width;
-        ShapeSimpleFactory factory;
-        // Pen pen = new Pen(Color.Red, 3);
-        
-        // only one triangle can be drawn at a time
-        // temp list to keep track of added points
         List<Point> trianglePoints = new List<Point>();
+
+        IDrawAPI api;
 
         public Form1()
         {
             InitializeComponent();
-            factory = new ShapeSimpleFactory();
+            api = new DrawAPI(this.CreateGraphics());
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -48,24 +35,21 @@ namespace shape_drawer
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
-            // height = e.X - x;
-            // width = e.Y - y;
+            IShape shape;
+
+            int h = e.X - x;
+            int w = e.Y - y;
+
             if (SquareRadioButton.Checked)
-            {
-                var shape = factory.GetShape("rectangle");
+            {                
+                shape = new Rectangle(x, y, h, w, api);
                 shape.draw();
             }
             else if (CircleRadioButton.Checked)
             {
-                var shape = factory.GetShape("circle");
+                shape = new Circle(x, y, h, w, api);
                 shape.draw();
-                //g.DrawRectangle(pen, shape);
             }
-
-            //Graphics g = this.CreateGraphics();
-            //Rectangle shape = new Rectangle(x, y, height, width);
-
-
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -77,10 +61,8 @@ namespace shape_drawer
                     Point p = new Point(e.X, e.Y);
                     trianglePoints.Add(p);
 
-                    Triangle triangle = factory.GetShape("triangle");
-                    //Graphics g = this.CreateGraphics();
-                    //SolidBrush brush = new SolidBrush(colorDialog1.Color);
-                    //g.FillPolygon(brush, trianglePoints.ToArray());
+                    IShape triangle = new Triangle(api, trianglePoints);
+                    triangle.draw();
 
                     trianglePoints.Clear();
                 }
@@ -92,23 +74,15 @@ namespace shape_drawer
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
             this.Invalidate();
         }
 
-        private void Form1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnPenColor_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            button1.BackColor = colorDialog1.Color;
-            //pen.Color = colorDialog1.Color;
+            btnPenColor.BackColor = colorDialog1.Color;
         }
     }
 }

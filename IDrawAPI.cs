@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace shape_drawer
@@ -9,6 +10,8 @@ namespace shape_drawer
     /// </summary>
     public interface IDrawAPI
     {
-        void drawShape();
+        void drawCircle(int x, int y, int h, int w);
+        void drawSquare(int x, int y, int h, int w);
+        void drawTriangle(List<Point> points);
     }
 }

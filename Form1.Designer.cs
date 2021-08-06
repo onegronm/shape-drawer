@@ -29,23 +29,23 @@ namespace shape_drawer
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPenColor = new System.Windows.Forms.Button();
             this.SquareRadioButton = new System.Windows.Forms.RadioButton();
             this.CircleRadioButton = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.TriangleRadioButton = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
-            // button1
+            // btnPenColor
             // 
-            this.button1.Location = new System.Drawing.Point(363, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Pen Color";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPenColor.Location = new System.Drawing.Point(363, 44);
+            this.btnPenColor.Name = "btnPenColor";
+            this.btnPenColor.Size = new System.Drawing.Size(94, 29);
+            this.btnPenColor.TabIndex = 0;
+            this.btnPenColor.Text = "Pen Color";
+            this.btnPenColor.UseVisualStyleBackColor = true;
+            this.btnPenColor.Click += new System.EventHandler(this.btnPenColor_Click);
             // 
             // SquareRadioButton
             // 
@@ -69,15 +69,15 @@ namespace shape_drawer
             this.CircleRadioButton.Text = "Circle";
             this.CircleRadioButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnClear
             // 
-            this.button2.Location = new System.Drawing.Point(463, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 29);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnClear.Location = new System.Drawing.Point(463, 44);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(94, 29);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // TriangleRadioButton
             // 
@@ -96,13 +96,12 @@ namespace shape_drawer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 575);
             this.Controls.Add(this.TriangleRadioButton);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.CircleRadioButton);
             this.Controls.Add(this.SquareRadioButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPenColor);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Click += new System.EventHandler(this.Form1_Click);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
@@ -113,11 +112,11 @@ namespace shape_drawer
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPenColor;
         private System.Windows.Forms.RadioButton SquareRadioButton;
         private System.Windows.Forms.RadioButton CircleRadioButton;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.RadioButton TriangleRadioButton;
     }
 }
